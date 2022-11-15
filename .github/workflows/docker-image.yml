@@ -13,11 +13,14 @@ jobs:
       - name: Check out the repo
         uses: actions/checkout@v3
       
-      - name: Grant execute permission for gradlew
-        run: chmod +x gradlew
-        
+      - name: Setup Gradle
+        uses: gradle/gradle-build-action@v2
+
       - name: Build with gradle
         run: ./gradlew build
+        
+      - name: Print Build Item
+        run: ls -al ./build/libs
     
       - name: Log in to Docker Hub
         uses: docker/login-action@v2
