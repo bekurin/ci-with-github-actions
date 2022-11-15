@@ -17,12 +17,12 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 1.8
-      
-      - name: Setup Gradle
-        uses: gradle/gradle-build-action@v2
 
-      - name: Build with gradle
-        run: ./gradlew build
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+
+      - name: Build with Gradle
+        run: ./gradlew clean build
         
       - name: Print Build Item
         run: ls -al ./build/libs
