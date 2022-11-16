@@ -5,11 +5,9 @@ on:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
-  workflow_dispatch:
-    inputs: 
-      docker-repo:
-        description: "Docker repo name"
-        required: true
+        
+env:
+  DOCKER_HUB_REPO: "piaochung/ci-with-github-actions"
   
 jobs:
   build-and-push-docker-image:
@@ -29,8 +27,8 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew clean build
 
-      - name: echo docker_repo
-        run: echo "${{ inputs.docker-repo }}"
+      - name: echo DOCKER_HUB_REPO
+        run: echo "${{ env.DOCKER_HUB_REPO }}"
     
       - name: Log in to Docker Hub
         uses: docker/login-action@v2
@@ -46,7 +44,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@98669ae865ea3cffbcbaa878cf57c20bbf1c6c38
         with:
-          images: ${{ inputs.docker-repo }}
+          images: ${{ env.DOCKER_HUB_REPO }}
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v3
