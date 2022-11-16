@@ -28,10 +28,7 @@ jobs:
 
       - name: Build with Gradle
         run: ./gradlew clean build
-        
-      - name: ls Build Item
-        run: ls -al ./build/libs
-        
+
       - name: echo docker_repo
         run: echo "${{ inputs.docker-repo }}"
     
