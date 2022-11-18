@@ -7,14 +7,14 @@ on:
     branches: [ "main" ]
         
 env:
-  DOCKER_HUB_REPO: "piaochung/ci-with-github-actions"
+  DOCKER_HUB_REPO: "ci-with-github-actions"
   
 jobs:
   build-and-push-docker-image:
     runs-on: ubuntu-latest
     steps:
       - name: echo tag name
-        run: echo "${{env.DOCKER_HUB_REPO}}:${GITHUB_SHA::7}"
+        run: echo "${{secrets.DOCKER_HUB_USERNAME}}/${{env.DOCKER_HUB_REPO}}:${GITHUB_SHA::7}"
       
 #       - name: Check out the repo
 #         uses: actions/checkout@v3
