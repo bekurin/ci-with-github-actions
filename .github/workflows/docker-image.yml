@@ -14,10 +14,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: echo tag name
-        run: echo "${{secrets.DOCKER_HUB_USERNAME}}/${{env.DOCKER_HUB_REPO}}:${GITHUB_SHA::7}" >> $DOCKER_REPO
+        run: echo "${{secrets.DOCKER_HUB_USERNAME}}/${{env.DOCKER_HUB_REPO}}:${GITHUB_SHA::7}" >> $GITHUB_ENV
         
-      - name: echo DOCKER_REPO
-        run: echo "$DOCKER_REPO"
+      - name: echo GITHUB_ENV
+        run: echo "$GITHUB_ENV"
       
 #       - name: Check out the repo
 #         uses: actions/checkout@v3
