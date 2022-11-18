@@ -27,15 +27,12 @@ jobs:
 
       - name: Build with Gradle
         run: ./gradlew clean build
-
-      - name: echo DOCKER_HUB_REPO
-        run: echo "${{ env.DOCKER_HUB_REPO }}"
     
       - name: Log in to Docker Hub
         uses: docker/login-action@v2
         with:
-          username: ${{ secrets.DOCKER_HUB_USERNAME }}
-          password: ${{ secrets.DOCKER_HUB_PASSWORD }}
+          username: ${{secrets.DOCKER_HUB_USERNAME}}
+          password: ${{secrets.DOCKER_HUB_PASSWORD}}
           
       - name: Set up Docker Buildx
         id: buildx
@@ -48,5 +45,4 @@ jobs:
           file: ./Dockerfile
           platforms: linux/amd64,linux/arm64
           push: true
-          tags: ${{ env.DOCKER_HUB_REPO }}:${ GITHUB_SHA::7 }
-          labels: ${{ steps.meta.outputs.labels }}
+          tags: ${{env.DOCKER_HUB_REPO}}:${GITHUB_SHA::7}
